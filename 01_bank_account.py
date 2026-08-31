@@ -41,3 +41,32 @@ Behavior:
    * withdraw(amount)     # removes the amount from the balance, but does not allow the balance to go negative
 
 """
+
+class BankAccount:
+   def __init__(self, account, balance):
+        self.account = account
+        self.balance = balance
+
+   def check_balance(self):
+       return f"Your balance is: {self.balance}"
+
+   def deposit(self, amount):
+      self.balance += amount
+      return f"You depositied {amount}. Your current account balance is {self.balance}"
+
+   def withdraw(self, amount):
+      if amount > self.balance:
+         return f"Insufficient Funds. Unable to withdraw: {amount}"
+      else:
+         self.balance -= amount
+         return f"You withdrew {amount}. Your current account balance is {self.balance}"
+
+if __name__ == "__main__":
+   account = BankAccount("12345", 100)
+   print(account.check_balance())
+
+   print(account.deposit(50))
+
+   print(account.withdraw(30))
+
+   print(account.withdraw(150))
